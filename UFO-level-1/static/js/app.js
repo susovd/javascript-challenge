@@ -19,7 +19,7 @@ function refreshTable(Data) {
     //to separate the key and value
     Object.entries(Row).forEach(function([key, value]) {
 
-      //create td tag for every cell
+      //append a cell to the row for each value in the Row object
       var cell = row.append("td");
       cell.text(value);
 
@@ -30,9 +30,15 @@ function refreshTable(Data) {
 };
 
 function chosenDate() {
+  //Prevent the page from refreshing
+  d3.event.preventDefault();
+
+  //select the #datetime element and get value property of input date
   var inputDate = d3.select("#datetime").property("value");
   console.log(inputDate)
 
+
+  //filter the data based on input date
   var filteredData = tableData.filter(row => row.datetime ===inputDate);
   refreshTable(filteredData);
   
